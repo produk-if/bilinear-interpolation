@@ -14,7 +14,9 @@
       "Bash(./test_serial.exe:*)",
       "Bash(cat:*)",
       "Bash(./bilinear_openmp_parallel.exe:*)",
-      "Bash(./test_omp.exe:*)"
+      "Bash(./test_omp.exe:*)",
+      "Bash(lscpu:*)",
+      "Bash(./test_omp:*)"
     ]
   }
 }

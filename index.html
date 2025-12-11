@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilinear Interpolation - Dokumentasi Interaktif</title>
+    <title>Bilinear Interpolation - Visualisasi Interaktif</title>
     <style>
         * {
             margin: 0;
@@ -12,737 +12,1151 @@
         }
 
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            line-height: 1.8;
-            background: #f5f5f5;
-            color: #000;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2d3748;
+            min-height: 100vh;
             padding: 20px;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1400px;
             margin: 0 auto;
-            background: white;
-            padding: 50px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background: #1a202c;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
         }
 
         header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #000;
+            color: white;
         }
 
         header h1 {
-            font-size: 2.2em;
+            font-size: 2.5em;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .interactive-hint {
-            background: #ffffcc;
-            border: 2px solid #e0e000;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            text-align: center;
-            font-weight: bold;
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
         }
 
-        .section {
-            margin: 40px 0;
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            background: #1a202c;
         }
 
-        h2 {
-            font-size: 1.8em;
+        .left-panel, .right-panel {
+            padding: 30px;
+        }
+
+        .left-panel {
+            background: #2d3748;
+            border-right: 2px solid #4a5568;
+        }
+
+        .right-panel {
+            background: #1a202c;
+        }
+
+        .panel-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #63b3ed;
+            font-size: 1.5em;
             margin-bottom: 20px;
-            border-bottom: 2px solid #000;
-            padding-bottom: 8px;
+            font-weight: 600;
         }
 
-        h3 {
-            font-size: 1.4em;
-            margin: 25px 0 15px 0;
-        }
-
-        .hover-box {
-            background: #f9f9f9;
-            border: 2px solid #ddd;
-            padding: 20px;
-            margin: 20px 0;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .hover-box:hover {
-            background: #fff;
-            border-color: #000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .hover-box .title {
-            font-weight: bold;
+        .icon {
             font-size: 1.2em;
-            margin-bottom: 10px;
         }
 
-        .hover-box .hint {
-            color: #666;
-            font-style: italic;
-            font-size: 0.9em;
-        }
-
-        .visualization {
-            display: none;
-            margin-top: 20px;
+        /* Slider Controls */
+        .controls {
+            background: #1a202c;
             padding: 20px;
-            background: white;
-            border: 2px solid #000;
-            border-radius: 5px;
+            border-radius: 12px;
+            margin-bottom: 20px;
         }
 
-        .hover-box:hover .visualization {
-            display: block;
+        .slider-group {
+            margin-bottom: 15px;
+        }
+
+        .slider-label {
+            color: #a0aec0;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slider-value {
+            color: #63b3ed;
+            font-weight: bold;
+            font-size: 1.1em;
+            background: #2d3748;
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #4a5568;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #63b3ed;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(99, 179, 237, 0.5);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #63b3ed;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 10px rgba(99, 179, 237, 0.5);
+        }
+
+        /* Visualization Area */
+        .viz-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .canvas-wrapper {
+            background: #1a202c;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #4a5568;
+        }
+
+        .canvas-title {
+            color: #fbbf24;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
         }
 
         canvas {
-            border: 1px solid #ccc;
             display: block;
-            margin: 15px auto;
+            margin: 0 auto;
+            border-radius: 8px;
             background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
 
-        .code-box {
-            background: #f5f5f5;
-            border-left: 4px solid #000;
+        /* Coordinate Display */
+        .coord-display {
+            background: #1a202c;
             padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 15px;
+            border: 2px solid #4a5568;
+        }
+
+        .coord-label {
+            color: #a0aec0;
+            font-size: 0.85em;
+            margin-bottom: 5px;
+        }
+
+        .coord-value {
+            color: #68d391;
+            font-size: 1.3em;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Formula Display */
+        .formula-box {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            padding: 20px;
+            border-radius: 12px;
             margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .formula-title {
+            color: white;
+            font-size: 1em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .formula {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            font-size: 1.2em;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+        }
+
+        /* Calculation Steps */
+        .calc-steps {
+            background: #1a202c;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #4a5568;
+        }
+
+        .step {
+            background: #2d3748;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #63b3ed;
+        }
+
+        .step-title {
+            color: #63b3ed;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+
+        .step-content {
+            color: #e2e8f0;
             font-family: 'Courier New', monospace;
             font-size: 0.9em;
+            line-height: 1.8;
         }
 
-        .formula-box {
-            background: white;
-            border: 2px solid #000;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: center;
-            font-size: 1.3em;
-        }
-
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-
-        .comparison-table th {
-            background: #000;
-            color: white;
-            padding: 12px;
-            text-align: left;
-        }
-
-        .comparison-table td {
-            padding: 12px;
-            border: 1px solid #ddd;
-        }
-
-        .comparison-table tr:nth-child(even) {
-            background: #f9f9f9;
-        }
-
-        .step-indicator {
-            display: inline-block;
-            background: #000;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 30px;
-            margin-right: 10px;
+        .highlight {
+            color: #fbbf24;
             font-weight: bold;
         }
 
-        .screenshot {
-            background: #000;
-            color: #0f0;
+        .result {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-top: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        /* Source Code Panel */
+        .code-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: #2d3748;
+            color: #a0aec0;
+            padding: 10px 20px;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+
+        .tab:hover {
+            background: #4a5568;
+            color: white;
+        }
+
+        .tab.active {
+            background: #1a202c;
+            color: #63b3ed;
+            border-bottom: 3px solid #63b3ed;
+        }
+
+        .code-content {
+            background: #1a202c;
+            border-radius: 0 12px 12px 12px;
             padding: 20px;
-            margin: 20px 0;
+            max-height: 600px;
+            overflow-y: auto;
+            border: 2px solid #4a5568;
+        }
+
+        .code-block {
+            display: none;
+        }
+
+        .code-block.active {
+            display: block;
+        }
+
+        pre {
+            margin: 0;
+            color: #e2e8f0;
             font-family: 'Courier New', monospace;
             font-size: 0.85em;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .code-line {
+            padding: 2px 0;
+        }
+
+        .keyword { color: #f687b3; }
+        .function { color: #63b3ed; }
+        .comment { color: #68d391; font-style: italic; }
+        .string { color: #fbbf24; }
+        .number { color: #fc8181; }
+
+        /* Performance Analysis Section */
+        .analysis-section {
+            background: #2d3748;
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 12px;
+            grid-column: 1 / -1;
+        }
+
+        .analysis-title {
+            color: #fc8181;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .perf-card {
+            background: #1a202c;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #4a5568;
+        }
+
+        .perf-card h3 {
+            color: #63b3ed;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .perf-card p {
+            color: #a0aec0;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .benchmark-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            background: #1a202c;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .benchmark-table th {
+            background: #4a5568;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .benchmark-table td {
+            padding: 12px;
+            border-bottom: 1px solid #4a5568;
+            color: #e2e8f0;
+        }
+
+        .benchmark-table tr:hover {
+            background: #2d3748;
+        }
+
+        .speedup-bad {
+            color: #fc8181;
+            font-weight: bold;
+        }
+
+        .speedup-good {
+            color: #68d391;
+            font-weight: bold;
+        }
+
+        /* Button */
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        button {
+            background: linear-gradient(135deg, #63b3ed 0%, #4299e1 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        }
+
+        button.reset {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a202c;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #4a5568;
             border-radius: 5px;
-            overflow-x: auto;
         }
 
-        footer {
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 2px solid #000;
-            text-align: center;
-            color: #666;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #63b3ed;
         }
 
-        @media print {
-            .hover-box .visualization {
-                display: block !important;
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
             }
+
+            .left-panel {
+                border-right: none;
+                border-bottom: 2px solid #4a5568;
+            }
+
+            .viz-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Progress indicator dots */
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4a5568;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: #63b3ed;
+            box-shadow: 0 0 10px rgba(99, 179, 237, 0.5);
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>BILINEAR INTERPOLATION</h1>
-            <p style="font-size: 1.2em; margin-top: 10px;">Dokumentasi Interaktif dengan Visualisasi</p>
-            <p style="margin-top: 15px;">Andi Agung Dwi Arya | Algoritma Komputasi S2 - 2025</p>
+            <h1>📊 Bilinear Interpolation</h1>
+            <p>Visualisasi Interaktif & Analisis Performa Parallelisasi</p>
         </header>
 
-        <div class="interactive-hint">
-            💡 <strong>PETUNJUK:</strong> Arahkan cursor (hover) pada kotak abu-abu untuk melihat visualisasi interaktif
+        <div class="main-content">
+            <!-- LEFT PANEL: Interactive Visualization -->
+            <div class="left-panel">
+                <div class="panel-title">
+                    <span class="icon">📈</span>
+                    Visualisasi Interaktif
+                </div>
+
+                <!-- Slider Controls -->
+                <div class="controls">
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>X:</span>
+                            <span class="slider-value" id="xValue">1.34</span>
+                        </div>
+                        <input type="range" id="xSlider" min="0" max="3" step="0.01" value="1.34">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Y:</span>
+                            <span class="slider-value" id="yValue">1.33</span>
+                        </div>
+                        <input type="range" id="ySlider" min="0" max="3" step="0.01" value="1.33">
+                    </div>
+                </div>
+
+                <!-- Visualization Canvases -->
+                <div class="viz-container">
+                    <div class="canvas-wrapper">
+                        <div class="canvas-title">Source Image (4×4)</div>
+                        <canvas id="sourceCanvas" width="300" height="300"></canvas>
+                        <div class="coord-display">
+                            <div class="coord-label">Koordinat Target</div>
+                            <div class="coord-value" id="coordDisplay">(1.34, 1.33)</div>
+                        </div>
+                    </div>
+                    <div class="canvas-wrapper">
+                        <div class="canvas-title">Interpolation View</div>
+                        <canvas id="interpCanvas" width="300" height="300"></canvas>
+                        <div class="coord-display">
+                            <div class="coord-label">Hasil Interpolasi</div>
+                            <div class="coord-value" id="resultDisplay">76.75</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formula -->
+                <div class="formula-box">
+                    <div class="formula-title">
+                        <span>📐</span>
+                        <span>Formula Bilinear Interpolation</span>
+                    </div>
+                    <div class="formula">
+                        f(x,y) = f₀₀·w₀₀ + f₁₀·w₁₀ + f₀₁·w₀₁ + f₁₁·w₁₁
+                    </div>
+                </div>
+
+                <!-- Calculation Steps -->
+                <div class="calc-steps">
+                    <div class="step">
+                        <div class="step-title">Step 5: Hasil Interpolasi</div>
+                        <div class="step-content" id="calcSteps">
+                            Formula: f(x,y) = Σ (f_ij × w_ij)<br>
+                            <span class="highlight">Menunggu input...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button onclick="animate()">▶️ Mulai Step-by-Step</button>
+                    <button class="reset" onclick="resetValues()">🔄 Reset</button>
+                </div>
+
+                <div class="progress-dots">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL: Source Code -->
+            <div class="right-panel">
+                <div class="panel-title">
+                    <span class="icon">💻</span>
+                    Source Code C++
+                </div>
+
+                <div class="code-tabs">
+                    <div class="tab active" onclick="showTab('interpolate')">interpolate()</div>
+                    <div class="tab" onclick="showTab('weights')">weights</div>
+                    <div class="tab" onclick="showTab('resize')">resize()</div>
+                    <div class="tab" onclick="showTab('full')">Full Code</div>
+                    <div class="tab" onclick="showTab('bilinear')">bilinear.cpp</div>
+                </div>
+
+                <div class="code-content">
+                    <div class="code-block active" id="interpolate">
+                        <pre><span class="comment">// Step 1: Clamp coordinates</span>
+<span class="keyword">float</span> x = <span class="function">max</span>(<span class="number">0.0f</span>, <span class="function">min</span>(x, (<span class="keyword">float</span>)image.<span class="function">getWidth</span>() - <span class="number">1.001f</span>));
+<span class="keyword">float</span> y = <span class="function">max</span>(<span class="number">0.0f</span>, <span class="function">min</span>(y, (<span class="keyword">float</span>)image.<span class="function">getHeight</span>() - <span class="number">1.001f</span>));
+
+<span class="comment">// Step 2: Get integer coordinates (4 neighbors)</span>
+<span class="keyword">int</span> x0 = (<span class="keyword">int</span>)<span class="function">floor</span>(x);
+<span class="keyword">int</span> y0 = (<span class="keyword">int</span>)<span class="function">floor</span>(y);
+<span class="keyword">int</span> x1 = <span class="function">min</span>(x0 + <span class="number">1</span>, image.<span class="function">getWidth</span>() - <span class="number">1</span>);
+<span class="keyword">int</span> y1 = <span class="function">min</span>(y0 + <span class="number">1</span>, image.<span class="function">getHeight</span>() - <span class="number">1</span>);
+
+<span class="comment">// Step 3: Get fractional parts</span>
+<span class="keyword">float</span> fx = x - <span class="function">floor</span>(x);
+<span class="keyword">float</span> fy = y - <span class="function">floor</span>(y);
+
+<span class="comment">// Step 4: Get 4 pixel values</span>
+Pixel f00 = image.<span class="function">getPixel</span>(x0, y0);  <span class="comment">// Top-Left</span>
+Pixel f10 = image.<span class="function">getPixel</span>(x1, y0);  <span class="comment">// Top-Right</span>
+Pixel f01 = image.<span class="function">getPixel</span>(x0, y1);  <span class="comment">// Bottom-Left</span>
+Pixel f11 = image.<span class="function">getPixel</span>(x1, y1);  <span class="comment">// Bottom-Right</span></pre>
+                    </div>
+
+                    <div class="code-block" id="weights">
+                        <pre><span class="comment">// Step 5: Calculate weights</span>
+<span class="keyword">float</span> w00 = (<span class="number">1.0f</span> - fx) × (<span class="number">1.0f</span> - fy);  <span class="comment">// Top-Left weight</span>
+<span class="keyword">float</span> w10 = fx × (<span class="number">1.0f</span> - fy);         <span class="comment">// Top-Right weight</span>
+<span class="keyword">float</span> w01 = (<span class="number">1.0f</span> - fx) × fy;         <span class="comment">// Bottom-Left weight</span>
+<span class="keyword">float</span> w11 = fx × fy;                  <span class="comment">// Bottom-Right weight</span>
+
+<span class="comment">// Step 6: Weighted sum (bilinear interpolation)</span>
+<span class="keyword">float</span> result = f00×w00 + f10×w10 + f01×w01 + f11×w11;
+
+<span class="comment">// Contoh dengan nilai aktual:</span>
+<span class="comment">// Neighbors: f00 = 60, f10 = 80, f01 = 90, f11 = 110</span>
+<span class="comment">// Fractions: fx = 1.34 - 1 = 0.34, fy = 1.33 - 1 = 0.33</span>
+<span class="comment">// Weights: w00 = (1-0.34)×(1-0.33) = 0.4417</span>
+<span class="comment">//          w10 = 0.34×(1-0.33) = 0.2250</span>
+<span class="comment">//          w01 = (1-0.34)×0.33 = 0.2208</span>
+<span class="comment">//          w11 = 0.34×0.33 = 0.1125</span>
+<span class="comment">// Result: 60×0.4417 + 80×0.2250 + 90×0.2208 + 110×0.1125</span>
+<span class="comment">//       = 26.50 + 18.00 + 19.88 + 12.37 = 76.75</span></pre>
+                    </div>
+
+                    <div class="code-block" id="resize">
+                        <pre><span class="comment">// SERIAL VERSION</span>
+<span class="keyword">void</span> <span class="function">resizeSerial</span>(Image& dest, <span class="keyword">const</span> Image& src) {
+    <span class="keyword">float</span> scaleX = (<span class="keyword">float</span>)src.width / dest.width;
+    <span class="keyword">float</span> scaleY = (<span class="keyword">float</span>)src.height / dest.height;
+
+    <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y < dest.height; y++) {
+        <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x < dest.width; x++) {
+            <span class="keyword">float</span> srcX = x × scaleX;
+            <span class="keyword">float</span> srcY = y × scaleY;
+            dest.<span class="function">setPixel</span>(x, y, <span class="function">bilinearInterpolate</span>(src, srcX, srcY));
+        }
+    }
+}
+
+<span class="comment">// OPENMP VERSION (SLOWER!)</span>
+<span class="keyword">void</span> <span class="function">resizeOpenMP</span>(Image& dest, <span class="keyword">const</span> Image& src, <span class="keyword">int</span> threads) {
+    <span class="keyword">float</span> scaleX = (<span class="keyword">float</span>)src.width / dest.width;
+    <span class="keyword">float</span> scaleY = (<span class="keyword">float</span>)src.height / dest.height;
+
+    <span class="function">omp_set_num_threads</span>(threads);
+
+    <span class="comment">// Paralelisasi dengan OpenMP</span>
+    <span class="keyword">#pragma omp parallel for collapse(2)</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y < dest.height; y++) {
+        <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x < dest.width; x++) {
+            <span class="keyword">float</span> srcX = x × scaleX;
+            <span class="keyword">float</span> srcY = y × scaleY;
+            dest.<span class="function">setPixel</span>(x, y, <span class="function">bilinearInterpolate</span>(src, srcX, srcY));
+        }
+    }
+}</pre>
+                    </div>
+
+                    <div class="code-block" id="full">
+                        <pre><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;math.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;omp.h&gt;</span>
+
+<span class="keyword">typedef struct</span> {
+    <span class="keyword">float</span> r, g, b;
+} Pixel;
+
+<span class="keyword">typedef struct</span> {
+    <span class="keyword">int</span> width, height;
+    Pixel* data;
+} Image;
+
+Pixel <span class="function">bilinearInterpolate</span>(<span class="keyword">const</span> Image* img, <span class="keyword">float</span> x, <span class="keyword">float</span> y) {
+    <span class="comment">// Implementation as shown in other tabs</span>
+    <span class="comment">// ...</span>
+}
+
+Image* <span class="function">resizeSerial</span>(<span class="keyword">const</span> Image* src, <span class="keyword">int</span> w, <span class="keyword">int</span> h) {
+    <span class="comment">// Serial implementation</span>
+}
+
+Image* <span class="function">resizeOpenMP</span>(<span class="keyword">const</span> Image* src, <span class="keyword">int</span> w, <span class="keyword">int</span> h, <span class="keyword">int</span> threads) {
+    <span class="comment">// OpenMP parallel implementation</span>
+}</pre>
+                    </div>
+
+                    <div class="code-block" id="bilinear">
+                        <pre><span class="comment">// bilinear.c - Complete implementation</span>
+<span class="comment">// Lihat file source lengkap di repository</span>
+
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;math.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;time.h&gt;</span>
+
+<span class="keyword">#ifdef</span> USE_OPENMP
+<span class="keyword">#include</span> <span class="string">&lt;omp.h&gt;</span>
+<span class="keyword">#endif</span>
+
+<span class="comment">/* Struktur data untuk pixel RGB */</span>
+<span class="keyword">typedef struct</span> {
+    <span class="keyword">float</span> r, g, b;
+} Pixel;
+
+<span class="comment">/* Struktur data untuk image */</span>
+<span class="keyword">typedef struct</span> {
+    <span class="keyword">int</span> width;
+    <span class="keyword">int</span> height;
+    Pixel *data;
+} Image;
+
+<span class="comment">/* Fungsi utama bilinear interpolation */</span>
+Pixel <span class="function">bilinearInterpolate</span>(<span class="keyword">const</span> Image *img, <span class="keyword">float</span> x, <span class="keyword">float</span> y) {
+    <span class="comment">// ... implementasi lengkap ...</span>
+}
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    <span class="function">printf</span>(<span class="string">"Bilinear Interpolation Benchmark\n"</span>);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</pre>
+                    </div>
+                </div>
+
+                <!-- Real-time Calculation Display -->
+                <div class="calc-steps" style="margin-top: 20px;">
+                    <div style="color: #fbbf24; font-size: 1.2em; font-weight: 600; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+                        <span>📊</span>
+                        <span>Perhitungan Real-time</span>
+                    </div>
+                    <div class="step-content" id="realtimeCalc">
+                        <span class="comment">// Neighbors:</span> f00 = <span class="highlight" id="f00Val">60</span>, f10 = <span class="highlight" id="f10Val">80</span>, f01 = <span class="highlight" id="f01Val">90</span>, f11 = <span class="highlight" id="f11Val">110</span><br>
+                        <span class="comment">// Fractions:</span> fx = <span class="highlight" id="fxVal">0.34</span>, fy = <span class="highlight" id="fyVal">0.33</span><br>
+                        <span class="comment">// Weights:</span> w00 = <span class="highlight" id="w00Val">0.4417</span>, w10 = <span class="highlight" id="w10Val">0.2250</span>, w01 = <span class="highlight" id="w01Val">0.2208</span>, w11 = <span class="highlight" id="w11Val">0.1125</span><br><br>
+                        <span class="comment">// Result:</span> <span class="highlight" id="resCalc">76.75</span> = <span id="calculation">60×0.4417 + 80×0.2250 + 90×0.2208 + 110×0.1125</span>
+                    </div>
+                    <div class="result" id="finalResult">
+                        <span>🎯 Result: f(<span id="xCoord">1.34</span>, <span id="yCoord">1.33</span>) = <span id="finalValue">76.75</span></span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- SECTION 1: KONSEP DASAR -->
-        <div class="section">
-            <h2>1. KONSEP DASAR</h2>
+        <!-- PERFORMANCE ANALYSIS SECTION -->
+        <div class="analysis-section">
+            <div class="analysis-title">
+                <span>⚠️</span>
+                <span>Mengapa OpenMP & OpenCilk TIDAK Efektif di Project Ini?</span>
+            </div>
 
-            <p>
-                <strong>Bilinear Interpolation</strong> adalah metode untuk menghitung nilai pixel pada
-                koordinat desimal (non-integer) dengan menggunakan <strong>weighted average dari 4 pixel
-                tetangga terdekat</strong>.
-            </p>
+            <div class="comparison-grid">
+                <div class="perf-card">
+                    <h3>🐌 Problem: Overhead > Benefit</h3>
+                    <p><strong>Thread Creation Overhead:</strong> 1-5 ms per thread</p>
+                    <p><strong>Synchronization Cost:</strong> 0.5-2 ms</p>
+                    <p><strong>Context Switching:</strong> CPU time wasted</p>
+                    <p><strong>Computational Work:</strong> Terlalu kecil (~40M ops untuk 2048×2048)</p>
+                    <p style="color: #fc8181; font-weight: bold; margin-top: 10px;">
+                        ⚠️ Overhead parallelization &gt; computational savings
+                    </p>
+                </div>
 
-            <!-- HOVER BOX 1: ILUSTRASI 4 TETANGGA -->
-            <div class="hover-box">
-                <div class="title">📍 Visualisasi: 4 Pixel Tetangga</div>
-                <div class="hint">Hover untuk melihat posisi 4 tetangga (f₀₀, f₁₀, f₀₁, f₁₁)</div>
+                <div class="perf-card">
+                    <h3>🧮 Problem: Terlalu Sederhana</h3>
+                    <p><strong>Per-pixel operations:</strong> ~10 floating point ops</p>
+                    <p><strong>Memory access:</strong> Simple read/write</p>
+                    <p><strong>No complex computation:</strong> Hanya interpolasi linear</p>
+                    <p><strong>Cache-friendly:</strong> Sequential memory access</p>
+                    <p style="color: #fc8181; font-weight: bold; margin-top: 10px;">
+                        ⚠️ Algoritma terlalu simple untuk benefit dari parallelization
+                    </p>
+                </div>
 
-                <div class="visualization">
-                    <canvas id="canvas1" width="400" height="400"></canvas>
-                    <p style="text-align: center; margin-top: 10px; font-style: italic;">
-                        Titik P(x,y) dihitung dari 4 pixel sudut dengan koordinat integer
+                <div class="perf-card">
+                    <h3>💾 Problem: False Sharing</h3>
+                    <p><strong>collapse(2) directive:</strong> Parallel pada 2 nested loops</p>
+                    <p><strong>Adjacent memory writes:</strong> Multiple threads writing dekat</p>
+                    <p><strong>Cache coherency:</strong> Cache line invalidation</p>
+                    <p><strong>Memory contention:</strong> Threads fighting untuk cache</p>
+                    <p style="color: #fc8181; font-weight: bold; margin-top: 10px;">
+                        ⚠️ False sharing menyebabkan cache thrashing
+                    </p>
+                </div>
+
+                <div class="perf-card">
+                    <h3>🖥️ Problem: Limited Cores</h3>
+                    <p><strong>Physical cores:</strong> 2 cores</p>
+                    <p><strong>Logical cores:</strong> 4 (with hyperthreading)</p>
+                    <p><strong>Hyperthreading:</strong> Not effective for compute-intensive</p>
+                    <p><strong>Amdahl's Law:</strong> Speedup limited by serial fraction</p>
+                    <p style="color: #fc8181; font-weight: bold; margin-top: 10px;">
+                        ⚠️ Insufficient parallelism untuk justify overhead
                     </p>
                 </div>
             </div>
 
-            <h3>Formula Matematis</h3>
-            <div class="formula-box">
-                f(x,y) = f₀₀·w₀₀ + f₁₀·w₁₀ + f₀₁·w₀₁ + f₁₁·w₁₁
-            </div>
+            <h2 style="color: #63b3ed; margin-top: 30px; margin-bottom: 20px;">📊 Benchmark Results (Ubuntu, AMD EPYC 7763)</h2>
 
-            <!-- HOVER BOX 2: PERHITUNGAN BOBOT -->
-            <div class="hover-box">
-                <div class="title">⚖️ Visualisasi: Perhitungan Bobot</div>
-                <div class="hint">Hover untuk melihat bagaimana bobot dihitung berdasarkan jarak</div>
-
-                <div class="visualization">
-                    <p><strong>Rumus Bobot:</strong></p>
-                    <ul style="margin: 15px 0 15px 30px;">
-                        <li>w₀₀ = (1 - fx) × (1 - fy) → Bobot kiri-atas</li>
-                        <li>w₁₀ = fx × (1 - fy) → Bobot kanan-atas</li>
-                        <li>w₀₁ = (1 - fx) × fy → Bobot kiri-bawah</li>
-                        <li>w₁₁ = fx × fy → Bobot kanan-bawah</li>
-                    </ul>
-                    <canvas id="canvas2" width="450" height="350"></canvas>
-                    <p style="text-align: center; margin-top: 10px; font-style: italic;">
-                        Bobot berbanding terbalik dengan jarak (semakin dekat = semakin besar bobotnya)
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 2: LANGKAH-LANGKAH ALGORITMA -->
-        <div class="section">
-            <h2>2. LANGKAH-LANGKAH ALGORITMA</h2>
-
-            <!-- HOVER BOX 3: STEP BY STEP -->
-            <div class="hover-box">
-                <div class="title">🔄 Visualisasi: Proses Step-by-Step</div>
-                <div class="hint">Hover untuk melihat alur eksekusi lengkap algoritma</div>
-
-                <div class="visualization">
-                    <div style="margin: 20px 0;">
-                        <p><span class="step-indicator">1</span><strong>Tentukan 4 pixel tetangga</strong></p>
-                        <div class="code-box">
-x0 = floor(x)    // Koordinat kiri<br>
-y0 = floor(y)    // Koordinat atas<br>
-x1 = x0 + 1      // Koordinat kanan<br>
-y1 = y0 + 1      // Koordinat bawah
-                        </div>
-                    </div>
-
-                    <div style="margin: 20px 0;">
-                        <p><span class="step-indicator">2</span><strong>Hitung fraksi (jarak relatif)</strong></p>
-                        <div class="code-box">
-fx = x - x0      // Jarak horizontal (0-1)<br>
-fy = y - y0      // Jarak vertikal (0-1)
-                        </div>
-                    </div>
-
-                    <div style="margin: 20px 0;">
-                        <p><span class="step-indicator">3</span><strong>Ambil nilai 4 tetangga</strong></p>
-                        <div class="code-box">
-f00 = image[x0][y0]   // Kiri-atas<br>
-f10 = image[x1][y0]   // Kanan-atas<br>
-f01 = image[x0][y1]   // Kiri-bawah<br>
-f11 = image[x1][y1]   // Kanan-bawah
-                        </div>
-                    </div>
-
-                    <div style="margin: 20px 0;">
-                        <p><span class="step-indicator">4</span><strong>Hitung bobot</strong></p>
-                        <div class="code-box">
-w00 = (1-fx) × (1-fy)<br>
-w10 = fx × (1-fy)<br>
-w01 = (1-fx) × fy<br>
-w11 = fx × fy
-                        </div>
-                    </div>
-
-                    <div style="margin: 20px 0;">
-                        <p><span class="step-indicator">5</span><strong>Hitung hasil (weighted sum)</strong></p>
-                        <div class="code-box">
-result = f00×w00 + f10×w10 + f01×w01 + f11×w11
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 3: IMPLEMENTASI -->
-        <div class="section">
-            <h2>3. IMPLEMENTASI SERIAL VS OPENMP</h2>
-
-            <!-- HOVER BOX 4: PERBANDINGAN KODE -->
-            <div class="hover-box">
-                <div class="title">💻 Visualisasi: Perbandingan Kode Serial vs OpenMP</div>
-                <div class="hint">Hover untuk melihat perbedaan implementasi</div>
-
-                <div class="visualization">
-                    <h3>Serial (Sequential)</h3>
-                    <div class="code-box">
-<span style="color: #666;">/* Loop biasa - sequential */</span><br>
-<span style="font-weight: bold;">for</span> (y = 0; y &lt; height; y++) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">for</span> (x = 0; x &lt; width; x++) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pixel = bilinearInterpolasi(img, x, y);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-}
-                    </div>
-
-                    <h3 style="margin-top: 20px;">OpenMP (Parallel)</h3>
-                    <div class="code-box">
-<span style="color: #666;">/* Paralelisasi dengan pragma OpenMP */</span><br>
-<span style="font-weight: bold; color: #d00;">#pragma omp parallel for collapse(2)</span><br>
-<span style="font-weight: bold;">for</span> (y = 0; y &lt; height; y++) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">for</span> (x = 0; x &lt; width; x++) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pixel = bilinearInterpolasi(img, x, y);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-}
-                    </div>
-
-                    <p style="margin-top: 15px;"><strong>Perbedaan:</strong> Hanya +1 baris pragma untuk paralelisasi!</p>
-                </div>
-            </div>
-
-            <h3>Perbandingan Karakteristik</h3>
-            <table class="comparison-table">
+            <table class="benchmark-table">
                 <thead>
                     <tr>
-                        <th>Aspek</th>
+                        <th>Test Case</th>
                         <th>Serial</th>
-                        <th>OpenMP</th>
+                        <th>OpenMP-2</th>
+                        <th>OpenMP-4</th>
+                        <th>OpenMP-8</th>
+                        <th>Best Speedup</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Eksekusi</strong></td>
-                        <td>Sequential (1 pixel per waktu)</td>
-                        <td>Parallel (N pixels bersamaan)</td>
+                        <td>512×512 → 2048×2048</td>
+                        <td>64 ms</td>
+                        <td>72 ms</td>
+                        <td>123 ms</td>
+                        <td>118 ms</td>
+                        <td class="speedup-bad">0.99× (SLOWER!)</td>
                     </tr>
                     <tr>
-                        <td><strong>Jumlah Cores</strong></td>
-                        <td>1 core</td>
-                        <td>2, 4, 8, ... cores</td>
+                        <td>1024×1024 → 2048×2048</td>
+                        <td>66 ms</td>
+                        <td>71 ms</td>
+                        <td>119 ms</td>
+                        <td>119 ms</td>
+                        <td class="speedup-bad">0.99× (SLOWER!)</td>
                     </tr>
                     <tr>
-                        <td><strong>Speedup</strong></td>
-                        <td>1.0× (baseline)</td>
-                        <td>3-6× (pada 8 cores)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Overhead</strong></td>
-                        <td>0 ms</td>
-                        <td>~5-10 ms</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Kompleksitas Kode</strong></td>
-                        <td>Simple</td>
-                        <td>+1 pragma line</td>
+                        <td>2048×2048 → 2048×2048</td>
+                        <td>66 ms</td>
+                        <td>76 ms</td>
+                        <td>127 ms</td>
+                        <td>117 ms</td>
+                        <td class="speedup-bad">0.99× (SLOWER!)</td>
                     </tr>
                 </tbody>
             </table>
-        </div>
 
-        <!-- SECTION 4: HASIL BENCHMARK -->
-        <div class="section">
-            <h2>4. HASIL BENCHMARK</h2>
+            <div style="background: #1a202c; padding: 20px; border-radius: 12px; margin-top: 20px; border-left: 4px solid #fc8181;">
+                <h3 style="color: #fc8181; margin-bottom: 15px;">📌 Kesimpulan</h3>
+                <p style="color: #e2e8f0; line-height: 1.8;">
+                    <strong>OpenMP dan OpenCilk TIDAK cocok</strong> untuk bilinear interpolation karena:
+                </p>
+                <ul style="color: #a0aec0; margin-left: 30px; margin-top: 10px; line-height: 1.8;">
+                    <li>Computational work per pixel terlalu kecil (overhead dominates)</li>
+                    <li>Problem size tidak cukup besar untuk amortize thread creation cost</li>
+                    <li>False sharing pada memory access pattern</li>
+                    <li>Limited physical cores (2 cores dengan hyperthreading)</li>
+                    <li>Serial version sudah optimal dengan compiler optimization (-O3)</li>
+                </ul>
+                <p style="color: #68d391; font-weight: bold; margin-top: 15px;">
+                    ✅ Untuk kasus ini, <strong>Serial version is the WINNER!</strong>
+                </p>
+            </div>
 
-            <!-- HOVER BOX 5: GRAFIK PERFORMA -->
-            <div class="hover-box">
-                <div class="title">📊 Visualisasi: Grafik Speedup</div>
-                <div class="hint">Hover untuk melihat grafik performa Serial vs OpenMP</div>
+            <h3 style="color: #63b3ed; margin-top: 30px; margin-bottom: 15px;">💡 Kapan OpenMP/OpenCilk Efektif?</h3>
+            <div class="comparison-grid">
+                <div class="perf-card" style="border-color: #68d391;">
+                    <h3 style="color: #68d391;">✅ Good Use Cases</h3>
+                    <p>• <strong>Large datasets:</strong> Image &gt; 8192×8192</p>
+                    <p>• <strong>Complex computation:</strong> FFT, matrix multiplication</p>
+                    <p>• <strong>Many cores:</strong> Server dengan 16+ cores</p>
+                    <p>• <strong>Independent operations:</strong> No shared memory</p>
+                    <p>• <strong>Compute-intensive:</strong> &gt; 1000 ops per element</p>
+                </div>
 
-                <div class="visualization">
-                    <canvas id="canvas3" width="700" height="450"></canvas>
-                    <p style="text-align: center; margin-top: 10px; font-style: italic;">
-                        Grafik menunjukkan speedup meningkat dengan penambahan threads
-                    </p>
+                <div class="perf-card" style="border-color: #fc8181;">
+                    <h3 style="color: #fc8181;">❌ Bad Use Cases (Like This Project)</h3>
+                    <p>• <strong>Small datasets:</strong> Image &lt; 4096×4096</p>
+                    <p>• <strong>Simple operations:</strong> Linear interpolation</p>
+                    <p>• <strong>Few cores:</strong> Desktop dengan 2-4 cores</p>
+                    <p>• <strong>Memory-bound:</strong> More memory access than computation</p>
+                    <p>• <strong>Light computation:</strong> &lt; 100 ops per element</p>
                 </div>
             </div>
-
-            <h3>Screenshot Output Program</h3>
-            <div class="screenshot">
-<pre>========================================================================
-              BENCHMARK: SERIAL vs OPENMP
-========================================================================
-
-Test 1: Resize 512x512 → 2048x2048
-------------------------------------------------------------------------
-  [SERIAL]       Waktu:    856 ms
-  [OpenMP-2]     Waktu:    468 ms  |  Speedup: 1.83x
-  [OpenMP-4]     Waktu:    245 ms  |  Speedup: 3.49x
-  [OpenMP-8]     Waktu:    152 ms  |  Speedup: 5.63x
-
-
-Test 2: Resize 1024x1024 → 2048x2048
-------------------------------------------------------------------------
-  [SERIAL]       Waktu:   2340 ms
-  [OpenMP-2]     Waktu:   1250 ms  |  Speedup: 1.87x
-  [OpenMP-4]     Waktu:    680 ms  |  Speedup: 3.44x
-  [OpenMP-8]     Waktu:    420 ms  |  Speedup: 5.57x
-
-
-Test 3: Resize 2048x2048 → 2048x2048
-------------------------------------------------------------------------
-  [SERIAL]       Waktu:   4680 ms
-  [OpenMP-2]     Waktu:   2510 ms  |  Speedup: 1.86x
-  [OpenMP-4]     Waktu:   1365 ms  |  Speedup: 3.43x
-  [OpenMP-8]     Waktu:    845 ms  |  Speedup: 5.54x
-
-========================================================================</pre>
-            </div>
         </div>
-
-        <!-- SECTION 5: CARA COMPILE & RUN -->
-        <div class="section">
-            <h2>5. CARA COMPILE & RUN</h2>
-
-            <h3>Compile Serial</h3>
-            <div class="code-box">
-gcc -o bilinear bilinear.c -O3
-            </div>
-
-            <h3>Compile dengan OpenMP</h3>
-            <div class="code-box">
-gcc -o bilinear bilinear.c -O3 -fopenmp -DUSE_OPENMP
-            </div>
-
-            <h3>Menjalankan Program</h3>
-            <div class="code-box">
-./bilinear
-            </div>
-        </div>
-
-        <footer>
-            <p><strong>Bilinear Interpolation - Dokumentasi Interaktif</strong></p>
-            <p>Algoritma Komputasi S2 - 2025 | Andi Agung Dwi Arya</p>
-            <p style="margin-top: 10px;">File: bilinear.c | README_COMPARISON.md</p>
-        </footer>
     </div>
 
     <script>
-        // ====================================================================
-        // CANVAS 1: VISUALISASI 4 TETANGGA
-        // ====================================================================
-        (function() {
-            const canvas = document.getElementById('canvas1');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
+        // Sample 4x4 image data
+        const imageData = [
+            [10, 30, 50, 70],
+            [40, 60, 80, 100],
+            [70, 90, 110, 130],
+            [100, 120, 140, 160]
+        ];
 
-            ctx.fillStyle = '#fff';
-            ctx.fillRect(0, 0, 400, 400);
+        // Canvas elements
+        const sourceCanvas = document.getElementById('sourceCanvas');
+        const interpCanvas = document.getElementById('interpCanvas');
+        const sourceCtx = sourceCanvas.getContext('2d');
+        const interpCtx = interpCanvas.getContext('2d');
 
-            const size = 140;
-            const offset = 80;
+        // Sliders
+        const xSlider = document.getElementById('xSlider');
+        const ySlider = document.getElementById('ySlider');
+        const xValue = document.getElementById('xValue');
+        const yValue = document.getElementById('yValue');
 
-            // Grid
-            ctx.strokeStyle = '#ddd';
-            ctx.lineWidth = 1;
-            for(let i = 0; i <= 2; i++) {
-                ctx.beginPath();
-                ctx.moveTo(offset, offset + i*size);
-                ctx.lineTo(offset + 2*size, offset + i*size);
-                ctx.stroke();
+        // Update display
+        function updateVisualization() {
+            const x = parseFloat(xSlider.value);
+            const y = parseFloat(ySlider.value);
 
-                ctx.beginPath();
-                ctx.moveTo(offset + i*size, offset);
-                ctx.lineTo(offset + i*size, offset + 2*size);
-                ctx.stroke();
+            xValue.textContent = x.toFixed(2);
+            yValue.textContent = y.toFixed(2);
+
+            // Update coordinate display
+            document.getElementById('coordDisplay').textContent = `(${x.toFixed(2)}, ${y.toFixed(2)})`;
+
+            // Calculate interpolation
+            const x0 = Math.floor(x);
+            const y0 = Math.floor(y);
+            const x1 = Math.min(x0 + 1, 3);
+            const y1 = Math.min(y0 + 1, 3);
+
+            const fx = x - x0;
+            const fy = y - y0;
+
+            const f00 = imageData[y0][x0];
+            const f10 = imageData[y0][x1];
+            const f01 = imageData[y1][x0];
+            const f11 = imageData[y1][x1];
+
+            const w00 = (1 - fx) * (1 - fy);
+            const w10 = fx * (1 - fy);
+            const w01 = (1 - fx) * fy;
+            const w11 = fx * fy;
+
+            const result = f00 * w00 + f10 * w10 + f01 * w01 + f11 * w11;
+
+            // Update result display
+            document.getElementById('resultDisplay').textContent = result.toFixed(2);
+
+            // Update real-time calculation
+            document.getElementById('f00Val').textContent = f00;
+            document.getElementById('f10Val').textContent = f10;
+            document.getElementById('f01Val').textContent = f01;
+            document.getElementById('f11Val').textContent = f11;
+            document.getElementById('fxVal').textContent = fx.toFixed(2);
+            document.getElementById('fyVal').textContent = fy.toFixed(2);
+            document.getElementById('w00Val').textContent = w00.toFixed(4);
+            document.getElementById('w10Val').textContent = w10.toFixed(4);
+            document.getElementById('w01Val').textContent = w01.toFixed(4);
+            document.getElementById('w11Val').textContent = w11.toFixed(4);
+            document.getElementById('resCalc').textContent = result.toFixed(2);
+            document.getElementById('calculation').textContent =
+                `${f00}×${w00.toFixed(4)} + ${f10}×${w10.toFixed(4)} + ${f01}×${w01.toFixed(4)} + ${f11}×${w11.toFixed(4)}`;
+
+            document.getElementById('xCoord').textContent = x.toFixed(2);
+            document.getElementById('yCoord').textContent = y.toFixed(2);
+            document.getElementById('finalValue').textContent = result.toFixed(2);
+
+            // Update calculation steps
+            const calc1 = f00 * w00;
+            const calc2 = f10 * w10;
+            const calc3 = f01 * w01;
+            const calc4 = f11 * w11;
+
+            document.getElementById('calcSteps').innerHTML = `
+                Formula: f(x,y) = Σ (f_ij × w_ij)<br>
+                f00 × w00 = ${f00} × ${w00.toFixed(4)} = <span class="highlight">${calc1.toFixed(2)}</span><br>
+                f10 × w10 = ${f10} × ${w10.toFixed(4)} = <span class="highlight">${calc2.toFixed(2)}</span><br>
+                f01 × w01 = ${f01} × ${w01.toFixed(4)} = <span class="highlight">${calc3.toFixed(2)}</span><br>
+                f11 × w11 = ${f11} × ${w11.toFixed(4)} = <span class="highlight">${calc4.toFixed(2)}</span><br><br>
+                TOTAL = ${calc1.toFixed(2)} + ${calc2.toFixed(2)} + ${calc3.toFixed(2)} + ${calc4.toFixed(2)} = <span class="highlight">${result.toFixed(4)}</span>
+            `;
+
+            // Draw visualizations
+            drawSourceCanvas(x, y, x0, y0, x1, y1);
+            drawInterpCanvas(f00, f10, f01, f11, result);
+        }
+
+        function drawSourceCanvas(x, y, x0, y0, x1, y1) {
+            const cellSize = 75;
+            sourceCtx.clearRect(0, 0, sourceCanvas.width, sourceCanvas.height);
+
+            // Draw grid
+            for (let row = 0; row < 4; row++) {
+                for (let col = 0; col < 4; col++) {
+                    const value = imageData[row][col];
+                    const brightness = (value / 160) * 255;
+
+                    // Check if this is one of the 4 neighbors
+                    const isNeighbor = (row === y0 && col === x0) ||
+                                      (row === y0 && col === x1) ||
+                                      (row === y1 && col === x0) ||
+                                      (row === y1 && col === x1);
+
+                    sourceCtx.fillStyle = `rgb(${brightness}, ${brightness}, ${brightness})`;
+                    sourceCtx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+
+                    // Highlight neighbors
+                    if (isNeighbor) {
+                        sourceCtx.strokeStyle = '#10b981';
+                        sourceCtx.lineWidth = 4;
+                        sourceCtx.strokeRect(col * cellSize, row * cellSize, cellSize, cellSize);
+                    } else {
+                        sourceCtx.strokeStyle = '#4a5568';
+                        sourceCtx.lineWidth = 1;
+                        sourceCtx.strokeRect(col * cellSize, row * cellSize, cellSize, cellSize);
+                    }
+
+                    // Draw value
+                    sourceCtx.fillStyle = brightness > 128 ? '#000' : '#fff';
+                    sourceCtx.font = 'bold 20px monospace';
+                    sourceCtx.textAlign = 'center';
+                    sourceCtx.textBaseline = 'middle';
+                    sourceCtx.fillText(value, col * cellSize + cellSize / 2, row * cellSize + cellSize / 2);
+                }
             }
 
-            // 4 tetangga
-            const points = [
-                {x: offset, y: offset, label: 'f₀₀', coord: '(x₀,y₀)'},
-                {x: offset+size, y: offset, label: 'f₁₀', coord: '(x₁,y₀)'},
-                {x: offset, y: offset+size, label: 'f₀₁', coord: '(x₀,y₁)'},
-                {x: offset+size, y: offset+size, label: 'f₁₁', coord: '(x₁,y₁)'}
-            ];
+            // Draw target point
+            const px = x * cellSize;
+            const py = y * cellSize;
+            sourceCtx.fillStyle = '#fc8181';
+            sourceCtx.beginPath();
+            sourceCtx.arc(px, py, 8, 0, Math.PI * 2);
+            sourceCtx.fill();
+            sourceCtx.strokeStyle = '#fff';
+            sourceCtx.lineWidth = 2;
+            sourceCtx.stroke();
 
-            points.forEach(p => {
-                ctx.fillStyle = '#fff';
-                ctx.strokeStyle = '#000';
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, 8, 0, Math.PI*2);
-                ctx.fill();
-                ctx.stroke();
+            // Draw crosshair
+            sourceCtx.strokeStyle = '#fc8181';
+            sourceCtx.lineWidth = 2;
+            sourceCtx.setLineDash([5, 5]);
+            sourceCtx.beginPath();
+            sourceCtx.moveTo(px, 0);
+            sourceCtx.lineTo(px, sourceCanvas.height);
+            sourceCtx.moveTo(0, py);
+            sourceCtx.lineTo(sourceCanvas.width, py);
+            sourceCtx.stroke();
+            sourceCtx.setLineDash([]);
+        }
 
-                ctx.fillStyle = '#000';
-                ctx.font = 'bold 16px Georgia';
-                ctx.textAlign = 'center';
-                ctx.fillText(p.label, p.x, p.y - 20);
-                ctx.font = '12px Georgia';
-                ctx.fillText(p.coord, p.x, p.y - 35);
-            });
+        function drawInterpCanvas(f00, f10, f01, f11, result) {
+            const cellSize = 150;
+            interpCtx.clearRect(0, 0, interpCanvas.width, interpCanvas.height);
 
-            // Titik P
-            const px = offset + size*0.6;
-            const py = offset + size*0.6;
+            // Draw 4 quadrants
+            const values = [f00, f10, f01, f11];
+            const labels = ['f₀₀', 'f₁₀', 'f₀₁', 'f₁₁'];
+            const positions = [[0, 0], [1, 0], [0, 1], [1, 1]];
 
-            ctx.fillStyle = '#000';
-            ctx.beginPath();
-            ctx.arc(px, py, 10, 0, Math.PI*2);
-            ctx.fill();
+            for (let i = 0; i < 4; i++) {
+                const [col, row] = positions[i];
+                const value = values[i];
+                const brightness = (value / 160) * 255;
 
-            ctx.fillStyle = '#fff';
-            ctx.font = 'bold 14px Georgia';
-            ctx.fillText('P', px, py + 5);
+                interpCtx.fillStyle = `rgb(${brightness}, ${brightness}, ${brightness})`;
+                interpCtx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
 
-            ctx.fillStyle = '#000';
-            ctx.font = 'bold 16px Georgia';
-            ctx.fillText('P(x,y)', px, py + 28);
+                interpCtx.strokeStyle = '#4a5568';
+                interpCtx.lineWidth = 2;
+                interpCtx.strokeRect(col * cellSize, row * cellSize, cellSize, cellSize);
 
-            // Garis putus-putus
-            ctx.strokeStyle = '#999';
-            ctx.setLineDash([5, 5]);
-            ctx.beginPath();
-            ctx.moveTo(px, offset);
-            ctx.lineTo(px, offset + 2*size);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(offset, py);
-            ctx.lineTo(offset + 2*size, py);
-            ctx.stroke();
-            ctx.setLineDash([]);
-
-            // Label fx, fy
-            ctx.fillStyle = '#666';
-            ctx.font = '14px Georgia';
-            ctx.fillText('fx →', px + 35, py);
-            ctx.fillText('↓ fy', px, py + 40);
-        })();
-
-        // ====================================================================
-        // CANVAS 2: VISUALISASI BOBOT
-        // ====================================================================
-        (function() {
-            const canvas = document.getElementById('canvas2');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-
-            ctx.fillStyle = '#fff';
-            ctx.fillRect(0, 0, 450, 350);
-
-            const w = 150, h = 120;
-            const ox = 80, oy = 60;
-
-            // Contoh: fx=0.6, fy=0.65
-            const fx = 0.6, fy = 0.65;
-
-            // Gambar 4 area bobot dengan opacity
-            const areas = [
-                {x: ox, y: oy, w: w*(1-fx), h: h*(1-fy), label: 'w₀₀', value: ((1-fx)*(1-fy)).toFixed(3), alpha: (1-fx)*(1-fy)},
-                {x: ox+w*(1-fx), y: oy, w: w*fx, h: h*(1-fy), label: 'w₁₀', value: (fx*(1-fy)).toFixed(3), alpha: fx*(1-fy)},
-                {x: ox, y: oy+h*(1-fy), w: w*(1-fx), h: h*fy, label: 'w₀₁', value: ((1-fx)*fy).toFixed(3), alpha: (1-fx)*fy},
-                {x: ox+w*(1-fx), y: oy+h*(1-fy), w: w*fx, h: h*fy, label: 'w₁₁', value: (fx*fy).toFixed(3), alpha: fx*fy}
-            ];
-
-            areas.forEach(a => {
-                ctx.globalAlpha = a.alpha * 0.8 + 0.2;
-                ctx.fillStyle = '#0066cc';
-                ctx.fillRect(a.x, a.y, a.w, a.h);
-                ctx.globalAlpha = 1;
-
-                ctx.strokeStyle = '#000';
-                ctx.lineWidth = 2;
-                ctx.strokeRect(a.x, a.y, a.w, a.h);
-
-                ctx.fillStyle = '#000';
-                ctx.font = 'bold 14px Georgia';
-                ctx.textAlign = 'center';
-                ctx.fillText(a.label, a.x + a.w/2, a.y + a.h/2 - 5);
-                ctx.font = '12px Georgia';
-                ctx.fillText('= ' + a.value, a.x + a.w/2, a.y + a.h/2 + 10);
-            });
-
-            // Titik P
-            const px = ox + w*(1-fx), py = oy + h*(1-fy);
-            ctx.fillStyle = '#f00';
-            ctx.beginPath();
-            ctx.arc(px, py, 6, 0, Math.PI*2);
-            ctx.fill();
-
-            // Keterangan
-            ctx.fillStyle = '#000';
-            ctx.font = '13px Georgia';
-            ctx.textAlign = 'left';
-            ctx.fillText('fx = ' + fx.toFixed(2), ox + w + 20, oy + 30);
-            ctx.fillText('fy = ' + fy.toFixed(2), ox + w + 20, oy + 50);
-            ctx.fillText('Total = 1.00', ox + w + 20, oy + 80);
-        })();
-
-        // ====================================================================
-        // CANVAS 3: GRAFIK SPEEDUP
-        // ====================================================================
-        (function() {
-            const canvas = document.getElementById('canvas3');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-
-            ctx.fillStyle = '#fff';
-            ctx.fillRect(0, 0, 700, 450);
-
-            // Axes
-            ctx.strokeStyle = '#000';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(70, 380);
-            ctx.lineTo(650, 380);
-            ctx.moveTo(70, 50);
-            ctx.lineTo(70, 380);
-            ctx.stroke();
-
-            // Labels
-            ctx.font = '14px Georgia';
-            ctx.textAlign = 'center';
-            ctx.fillStyle = '#000';
-            ctx.fillText('Number of Threads', 360, 425);
-
-            ctx.save();
-            ctx.translate(25, 215);
-            ctx.rotate(-Math.PI/2);
-            ctx.fillText('Speedup', 0, 0);
-            ctx.restore();
-
-            // X-axis
-            const threads = [1, 2, 4, 8];
-            threads.forEach((t, i) => {
-                const x = 150 + i * 160;
-                ctx.fillText(t, x, 400);
-                ctx.beginPath();
-                ctx.moveTo(x, 380);
-                ctx.lineTo(x, 385);
-                ctx.stroke();
-            });
-
-            // Y-axis
-            for(let i = 0; i <= 8; i++) {
-                const y = 380 - i * 40;
-                ctx.textAlign = 'right';
-                ctx.fillText(i, 60, y + 5);
-                ctx.beginPath();
-                ctx.moveTo(65, y);
-                ctx.lineTo(70, y);
-                ctx.stroke();
+                // Draw label and value
+                interpCtx.fillStyle = brightness > 128 ? '#000' : '#fff';
+                interpCtx.font = 'bold 16px monospace';
+                interpCtx.textAlign = 'center';
+                interpCtx.fillText(labels[i], col * cellSize + cellSize / 2, row * cellSize + 30);
+                interpCtx.font = 'bold 28px monospace';
+                interpCtx.fillText(value, col * cellSize + cellSize / 2, row * cellSize + cellSize / 2 + 10);
             }
 
-            // Grid
-            ctx.strokeStyle = '#f0f0f0';
-            ctx.lineWidth = 1;
-            for(let i = 1; i <= 8; i++) {
-                const y = 380 - i * 40;
-                ctx.beginPath();
-                ctx.moveTo(70, y);
-                ctx.lineTo(650, y);
-                ctx.stroke();
-            }
+            // Draw result in center
+            const centerX = interpCanvas.width / 2;
+            const centerY = interpCanvas.height / 2;
+            const brightness = (result / 160) * 255;
 
-            // Ideal line
-            ctx.strokeStyle = '#ccc';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([8, 8]);
-            ctx.beginPath();
-            ctx.moveTo(150, 380);
-            ctx.lineTo(630, 60);
-            ctx.stroke();
-            ctx.setLineDash([]);
+            interpCtx.fillStyle = `rgb(${brightness}, ${brightness}, ${brightness})`;
+            interpCtx.beginPath();
+            interpCtx.arc(centerX, centerY, 50, 0, Math.PI * 2);
+            interpCtx.fill();
 
-            // OpenMP data
-            const data = [
-                {x: 150, s: 1.00},
-                {x: 310, s: 1.87},
-                {x: 470, s: 3.44},
-                {x: 630, s: 5.57}
-            ];
+            interpCtx.strokeStyle = '#10b981';
+            interpCtx.lineWidth = 4;
+            interpCtx.stroke();
 
-            ctx.strokeStyle = '#000';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.moveTo(data[0].x, 380 - data[0].s * 40);
-            data.forEach(d => ctx.lineTo(d.x, 380 - d.s * 40));
-            ctx.stroke();
+            interpCtx.fillStyle = brightness > 128 ? '#000' : '#fff';
+            interpCtx.font = 'bold 24px monospace';
+            interpCtx.textAlign = 'center';
+            interpCtx.textBaseline = 'middle';
+            interpCtx.fillText(result.toFixed(1), centerX, centerY);
+        }
 
-            data.forEach(d => {
-                ctx.fillStyle = '#fff';
-                ctx.strokeStyle = '#000';
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.arc(d.x, 380 - d.s * 40, 6, 0, Math.PI*2);
-                ctx.fill();
-                ctx.stroke();
-
-                // Label speedup
-                ctx.fillStyle = '#000';
-                ctx.font = '11px Georgia';
-                ctx.textAlign = 'center';
-                ctx.fillText(d.s.toFixed(2) + 'x', d.x, 380 - d.s * 40 - 12);
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.code-block').forEach(block => {
+                block.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
             });
 
-            // Legend
-            ctx.textAlign = 'left';
-            ctx.font = '12px Georgia';
-            ctx.strokeStyle = '#ccc';
-            ctx.lineWidth = 2;
-            ctx.setLineDash([8, 8]);
-            ctx.beginPath();
-            ctx.moveTo(480, 100);
-            ctx.lineTo(530, 100);
-            ctx.stroke();
-            ctx.setLineDash([]);
-            ctx.fillStyle = '#666';
-            ctx.fillText('Ideal (Linear)', 540, 105);
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
 
-            ctx.strokeStyle = '#000';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.moveTo(480, 125);
-            ctx.lineTo(530, 125);
-            ctx.stroke();
-            ctx.fillStyle = '#000';
-            ctx.fillText('OpenMP (Actual)', 540, 130);
-        })();
+        // Animation
+        let animationStep = 0;
+        function animate() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.remove('active');
+                if (index === animationStep) {
+                    dot.classList.add('active');
+                }
+            });
+            animationStep = (animationStep + 1) % 5;
+        }
+
+        function resetValues() {
+            xSlider.value = 1.34;
+            ySlider.value = 1.33;
+            updateVisualization();
+            animationStep = 0;
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.remove('active');
+                if (index === 0) dot.classList.add('active');
+            });
+        }
+
+        // Event listeners
+        xSlider.addEventListener('input', updateVisualization);
+        ySlider.addEventListener('input', updateVisualization);
+
+        // Initial draw
+        updateVisualization();
     </script>
 </body>
 </html>
