@@ -501,6 +501,344 @@
             background: #63b3ed;
             box-shadow: 0 0 10px rgba(99, 179, 237, 0.5);
         }
+
+        /* Main Navigation Tabs */
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 15px 20px;
+            background: rgba(0,0,0,0.3);
+            flex-wrap: wrap;
+        }
+
+        .main-nav .nav-tab {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95em;
+            border: 2px solid transparent;
+            backdrop-filter: blur(10px);
+        }
+
+        .main-nav .nav-tab:hover {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .main-nav .nav-tab.active {
+            background: white;
+            color: #667eea;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* Materi Panel */
+        .materi-panel {
+            padding: 40px;
+            background: #1a202c;
+        }
+
+        .materi-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #2d3748;
+            border-radius: 16px;
+            padding: 30px;
+            border: 2px solid #4a5568;
+        }
+
+        .materi-content h2 {
+            color: #63b3ed;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .materi-content pre {
+            background: #1a202c;
+            padding: 25px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-size: 0.9em;
+            line-height: 1.7;
+        }
+
+        .code-block-section {
+            display: none;
+        }
+
+        .code-block-section.active {
+            display: block;
+        }
+
+        .code-block-section pre {
+            background: #1a202c;
+            padding: 25px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-size: 0.9em;
+            line-height: 1.7;
+            color: #e2e8f0;
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: #2d3748;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #4a5568;
+        }
+
+        .info-card h4 {
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        /* Use Case Cards */
+        .use-case-card {
+            background: #2d3748;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: #e2e8f0;
+            border: 1px solid #4a5568;
+            transition: all 0.3s;
+        }
+
+        .use-case-card:hover {
+            background: #4a5568;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Step Cards */
+        .step-card {
+            display: flex;
+            gap: 20px;
+            background: #2d3748;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 4px solid #63b3ed;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #63b3ed 0%, #4299e1 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .step-body {
+            flex: 1;
+        }
+
+        .step-body h4 {
+            color: #63b3ed;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+
+        .step-body p {
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        /* Formula Display */
+        .formula-display {
+            background: #2d3748;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        /* Grid Visualization */
+        .grid-visualization {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .pixel-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .pixel-cell {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #1a202c;
+            font-weight: bold;
+        }
+
+        .pixel-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .pixel-value {
+            font-size: 1.8em;
+        }
+
+        .pixel-pos {
+            font-size: 0.7em;
+            opacity: 0.7;
+        }
+
+        .target-point {
+            text-align: center;
+            padding: 20px;
+            background: #1a202c;
+            border-radius: 10px;
+            border: 2px dashed #fc8181;
+        }
+
+        /* Calc Display */
+        .calc-display {
+            background: #1a202c;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .calc-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            flex-wrap: wrap;
+            color: #e2e8f0;
+        }
+
+        .calc-var {
+            font-weight: bold;
+            font-size: 1.2em;
+            font-family: monospace;
+        }
+
+        .calc-eq {
+            color: #a0aec0;
+        }
+
+        .calc-result {
+            background: #68d391;
+            color: #1a202c;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .calc-meaning {
+            color: #a0aec0;
+            font-style: italic;
+        }
+
+        /* Weight Grid */
+        .weight-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .weight-item {
+            background: #1a202c;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid;
+        }
+
+        .weight-formula {
+            color: #a0aec0;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .weight-calc {
+            color: #e2e8f0;
+            font-size: 0.85em;
+        }
+
+        .weight-result {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        /* Final Calc */
+        .final-calc {
+            background: #1a202c;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .formula-line {
+            color: #e2e8f0;
+            padding: 8px 0;
+            font-family: monospace;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #68d391 0%, #10b981 100%);
+            color: #1a202c;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .step-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .weight-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pixel-cell {
+                width: 80px;
+                height: 80px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -508,8 +846,261 @@
         <header>
             <h1>📊 Bilinear Interpolation</h1>
             <p>Visualisasi Interaktif & Analisis Performa Parallelisasi</p>
+            <nav class="main-nav">
+                <div class="nav-tab" onclick="showSection('konsep')">📚 Konsep</div>
+                <div class="nav-tab" onclick="showSection('carakerja')">⚙️ Cara Kerja</div>
+                <div class="nav-tab active" onclick="showSection('visualisasi')">📈 Visualisasi</div>
+                <div class="nav-tab" onclick="showSection('sourcecode')">💻 Source Code</div>
+                <div class="nav-tab" onclick="showSection('benchmark')">📊 Benchmark</div>
+            </nav>
         </header>
 
+        <!-- SECTION: KONSEP -->
+        <div class="content-section materi-panel" id="section-konsep">
+            <div class="materi-content" style="max-width: 1200px;">
+                <h2>📚 Konsep Bilinear Interpolation</h2>
+                
+                <!-- Intro Card -->
+                <div class="info-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; margin-bottom: 25px;">
+                    <h3 style="color: white; margin-bottom: 15px;">🎯 Apa itu Interpolation?</h3>
+                    <p style="color: rgba(255,255,255,0.95); font-size: 1.1em; line-height: 1.8;">
+                        <strong>Interpolation</strong> adalah teknik matematika untuk <span style="background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 4px;">MENGESTIMASI nilai</span> di antara titik-titik data yang sudah diketahui.
+                    </p>
+                    <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; margin-top: 15px;">
+                        <p style="color: #fbbf24; margin-bottom: 8px;">💡 <strong>Analogi Sederhana:</strong></p>
+                        <p style="color: rgba(255,255,255,0.9);">
+                            Kamu tahu suhu jam <strong>08:00 = 25°C</strong> dan jam <strong>10:00 = 29°C</strong><br>
+                            Berapa suhu jam 09:00? → <strong style="color: #68d391;">Interpolasi! → ≈ 27°C</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Jenis Interpolation -->
+                <h3 style="color: #63b3ed; margin-bottom: 20px;">📊 Jenis-Jenis Interpolation untuk Image</h3>
+                <div class="comparison-grid" style="margin-bottom: 30px;">
+                    <div class="info-card" style="border-left: 4px solid #fc8181;">
+                        <h4 style="color: #fc8181;">1. Nearest Neighbor</h4>
+                        <ul style="color: #a0aec0; margin-left: 20px; line-height: 1.8;">
+                            <li>Ambil nilai pixel <strong>terdekat</strong></li>
+                            <li>⚡ Cepat tapi hasilnya kotak-kotak (pixelated)</li>
+                            <li>Contoh: Pixel (1.7, 2.3) → ambil pixel (2, 2)</li>
+                        </ul>
+                    </div>
+                    <div class="info-card" style="border-left: 4px solid #68d391; background: linear-gradient(135deg, rgba(104, 211, 145, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);">
+                        <h4 style="color: #68d391;">2. Bilinear Interpolation ← PROJECT INI!</h4>
+                        <ul style="color: #a0aec0; margin-left: 20px; line-height: 1.8;">
+                            <li>Rata-rata tertimbang dari <strong>4 pixel tetangga</strong></li>
+                            <li>✨ Hasil lebih halus (smooth)</li>
+                            <li>⚖️ Keseimbangan kualitas dan kecepatan</li>
+                        </ul>
+                    </div>
+                    <div class="info-card" style="border-left: 4px solid #63b3ed;">
+                        <h4 style="color: #63b3ed;">3. Bicubic Interpolation</h4>
+                        <ul style="color: #a0aec0; margin-left: 20px; line-height: 1.8;">
+                            <li>Menggunakan <strong>16 pixel tetangga</strong></li>
+                            <li>🎨 Hasil paling halus</li>
+                            <li>🐌 Paling lambat, digunakan di Photoshop</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Kenapa Bilinear -->
+                <div class="info-card" style="background: #1a202c; margin-bottom: 25px;">
+                    <h3 style="color: #fbbf24; margin-bottom: 15px;">🤔 Kenapa Disebut "BILINEAR"?</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="text-align: center; padding: 20px; background: #2d3748; border-radius: 10px;">
+                            <div style="font-size: 2em; color: #63b3ed;">BI</div>
+                            <div style="color: #a0aec0;">= DUA</div>
+                            <div style="color: #68d391; font-size: 0.9em;">(2 arah: horizontal + vertical)</div>
+                        </div>
+                        <div style="text-align: center; padding: 20px; background: #2d3748; border-radius: 10px;">
+                            <div style="font-size: 2em; color: #f687b3;">LINEAR</div>
+                            <div style="color: #a0aec0;">= Garis Lurus</div>
+                            <div style="color: #68d391; font-size: 0.9em;">(interpolasi linear)</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px; padding: 15px; background: #2d3748; border-radius: 10px; text-align: center;">
+                        <p style="color: #e2e8f0;">
+                            <span style="color: #63b3ed;">1.</span> Interpolasi LINEAR di arah X (horizontal) →
+                            <span style="color: #f687b3;">2.</span> Interpolasi LINEAR di arah Y (vertical) =
+                            <strong style="color: #68d391; font-size: 1.2em;"> BILINEAR!</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Kapan Digunakan -->
+                <h3 style="color: #63b3ed; margin-bottom: 15px;">🚀 Kapan Digunakan?</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+                    <div class="use-case-card">🖼️ Image Resizing</div>
+                    <div class="use-case-card">🔄 Image Rotation</div>
+                    <div class="use-case-card">🎮 Texture Mapping (Game 3D)</div>
+                    <div class="use-case-card">🏥 Medical Imaging (CT, MRI)</div>
+                    <div class="use-case-card">🛰️ Satellite Processing</div>
+                    <div class="use-case-card">📺 Video Scaling</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: CARA KERJA -->
+        <div class="content-section materi-panel" id="section-carakerja">
+            <div class="materi-content" style="max-width: 1200px;">
+                <h2>⚙️ Cara Kerja Bilinear Interpolation</h2>
+
+                <!-- Step 1 -->
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-body">
+                        <h4>Mapping Koordinat</h4>
+                        <p>Saat resize gambar dari <strong style="color: #63b3ed;">100×100</strong> → <strong style="color: #68d391;">200×200</strong>:</p>
+                        <div class="formula-display">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <span style="background: #4a5568; padding: 8px 15px; border-radius: 8px;">Pixel (150, 120) di gambar BARU</span>
+                                <div style="font-size: 1.5em; margin: 10px 0;">↓ mapping</div>
+                                <span style="background: #68d391; color: #1a202c; padding: 8px 15px; border-radius: 8px;">Koordinat (75.0, 60.0) di gambar ASLI</span>
+                                <span style="color: #fc8181; margin-left: 10px;">← BUKAN INTEGER!</span>
+                            </div>
+                            <div style="background: #1a202c; padding: 15px; border-radius: 8px; font-family: monospace; text-align: center;">
+                                <span style="color: #63b3ed;">srcX</span> = destX × (srcWidth / destWidth)<br>
+                                <span style="color: #f687b3;">srcY</span> = destY × (srcHeight / destHeight)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-body">
+                        <h4>Temukan 4 Pixel Tetangga</h4>
+                        <p>Untuk koordinat <strong style="color: #fbbf24;">(1.34, 1.33)</strong>:</p>
+                        <div class="grid-visualization">
+                            <div class="pixel-grid">
+                                <div class="pixel-cell" style="background: #68d391;">
+                                    <span class="pixel-label">f00</span>
+                                    <span class="pixel-value">60</span>
+                                    <span class="pixel-pos">Top-Left</span>
+                                </div>
+                                <div class="pixel-cell" style="background: #63b3ed;">
+                                    <span class="pixel-label">f10</span>
+                                    <span class="pixel-value">80</span>
+                                    <span class="pixel-pos">Top-Right</span>
+                                </div>
+                                <div class="pixel-cell" style="background: #f687b3;">
+                                    <span class="pixel-label">f01</span>
+                                    <span class="pixel-value">90</span>
+                                    <span class="pixel-pos">Bottom-Left</span>
+                                </div>
+                                <div class="pixel-cell" style="background: #fbbf24;">
+                                    <span class="pixel-label">f11</span>
+                                    <span class="pixel-value">110</span>
+                                    <span class="pixel-pos">Bottom-Right</span>
+                                </div>
+                            </div>
+                            <div class="target-point">
+                                <div style="font-size: 2em;">🎯</div>
+                                <div>P (1.34, 1.33)</div>
+                                <div style="color: #fc8181; font-size: 0.9em;">Nilai yang dicari = ??</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-body">
+                        <h4>Hitung Fractional Part (Jarak Relatif)</h4>
+                        <div class="calc-display">
+                            <div class="calc-row">
+                                <span class="calc-var" style="color: #63b3ed;">fx</span>
+                                <span class="calc-eq">=</span>
+                                <span>x - floor(x) = 1.34 - 1 =</span>
+                                <span class="calc-result">0.34</span>
+                                <span class="calc-meaning">→ 34% ke kanan</span>
+                            </div>
+                            <div class="calc-row">
+                                <span class="calc-var" style="color: #f687b3;">fy</span>
+                                <span class="calc-eq">=</span>
+                                <span>y - floor(y) = 1.33 - 1 =</span>
+                                <span class="calc-result">0.33</span>
+                                <span class="calc-meaning">→ 33% ke bawah</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-body">
+                        <h4>Hitung Weight (Bobot)</h4>
+                        <p style="color: #a0aec0; margin-bottom: 15px;">💡 Semakin <strong>DEKAT</strong> pixel → bobot semakin <strong style="color: #68d391;">BESAR</strong></p>
+                        <div class="weight-grid">
+                            <div class="weight-item" style="border-color: #68d391;">
+                                <div class="weight-formula">w00 = (1-fx) × (1-fy)</div>
+                                <div class="weight-calc">= 0.66 × 0.67</div>
+                                <div class="weight-result" style="color: #68d391;">= 0.4422</div>
+                            </div>
+                            <div class="weight-item" style="border-color: #63b3ed;">
+                                <div class="weight-formula">w10 = fx × (1-fy)</div>
+                                <div class="weight-calc">= 0.34 × 0.67</div>
+                                <div class="weight-result" style="color: #63b3ed;">= 0.2278</div>
+                            </div>
+                            <div class="weight-item" style="border-color: #f687b3;">
+                                <div class="weight-formula">w01 = (1-fx) × fy</div>
+                                <div class="weight-calc">= 0.66 × 0.33</div>
+                                <div class="weight-result" style="color: #f687b3;">= 0.2178</div>
+                            </div>
+                            <div class="weight-item" style="border-color: #fbbf24;">
+                                <div class="weight-formula">w11 = fx × fy</div>
+                                <div class="weight-calc">= 0.34 × 0.33</div>
+                                <div class="weight-result" style="color: #fbbf24;">= 0.1122</div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 15px; padding: 10px; background: #1a202c; border-radius: 8px;">
+                            <span style="color: #a0aec0;">Total:</span>
+                            <span style="color: #68d391;">0.4422</span> +
+                            <span style="color: #63b3ed;">0.2278</span> +
+                            <span style="color: #f687b3;">0.2178</span> +
+                            <span style="color: #fbbf24;">0.1122</span> =
+                            <strong style="color: white; font-size: 1.2em;">1.0</strong>
+                            <span style="color: #68d391; margin-left: 10px;">✓ Selalu!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step-card" style="border-color: #68d391;">
+                    <div class="step-number" style="background: linear-gradient(135deg, #68d391 0%, #10b981 100%);">5</div>
+                    <div class="step-body">
+                        <h4>Weighted Average (Rata-rata Tertimbang)</h4>
+                        <div class="final-calc">
+                            <div class="formula-line">
+                                <span style="color: #fbbf24;">result</span> = f00×w00 + f10×w10 + f01×w01 + f11×w11
+                            </div>
+                            <div class="formula-line" style="font-size: 0.95em;">
+                                = <span style="color: #68d391;">60×0.4422</span> + 
+                                <span style="color: #63b3ed;">80×0.2278</span> + 
+                                <span style="color: #f687b3;">90×0.2178</span> + 
+                                <span style="color: #fbbf24;">110×0.1122</span>
+                            </div>
+                            <div class="formula-line" style="font-size: 0.95em;">
+                                = 26.53 + 18.22 + 19.60 + 12.34
+                            </div>
+                            <div class="result-box">
+                                🎯 Result = <span style="font-size: 1.5em;">76.75</span>
+                            </div>
+                        </div>
+                        <p style="text-align: center; color: #68d391; margin-top: 15px;">
+                            ✨ Hasil <strong>76.75</strong> adalah nilai pixel BARU yang smooth!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: VISUALISASI -->
+        <div class="content-section active" id="section-visualisasi">
         <div class="main-content">
             <!-- LEFT PANEL: Interactive Visualization -->
             <div class="left-panel">
@@ -592,170 +1183,15 @@
                 </div>
             </div>
 
-            <!-- RIGHT PANEL: Source Code -->
+            <!-- RIGHT PANEL: Realtime Calculation -->
             <div class="right-panel">
                 <div class="panel-title">
-                    <span class="icon">💻</span>
-                    Source Code C++
-                </div>
-
-                <div class="code-tabs">
-                    <div class="tab active" onclick="showTab('interpolate')">interpolate()</div>
-                    <div class="tab" onclick="showTab('weights')">weights</div>
-                    <div class="tab" onclick="showTab('resize')">resize()</div>
-                    <div class="tab" onclick="showTab('full')">Full Code</div>
-                    <div class="tab" onclick="showTab('bilinear')">bilinear.cpp</div>
-                </div>
-
-                <div class="code-content">
-                    <div class="code-block active" id="interpolate">
-                        <pre><span class="comment">// Step 1: Clamp coordinates</span>
-<span class="keyword">float</span> x = <span class="function">max</span>(<span class="number">0.0f</span>, <span class="function">min</span>(x, (<span class="keyword">float</span>)image.<span class="function">getWidth</span>() - <span class="number">1.001f</span>));
-<span class="keyword">float</span> y = <span class="function">max</span>(<span class="number">0.0f</span>, <span class="function">min</span>(y, (<span class="keyword">float</span>)image.<span class="function">getHeight</span>() - <span class="number">1.001f</span>));
-
-<span class="comment">// Step 2: Get integer coordinates (4 neighbors)</span>
-<span class="keyword">int</span> x0 = (<span class="keyword">int</span>)<span class="function">floor</span>(x);
-<span class="keyword">int</span> y0 = (<span class="keyword">int</span>)<span class="function">floor</span>(y);
-<span class="keyword">int</span> x1 = <span class="function">min</span>(x0 + <span class="number">1</span>, image.<span class="function">getWidth</span>() - <span class="number">1</span>);
-<span class="keyword">int</span> y1 = <span class="function">min</span>(y0 + <span class="number">1</span>, image.<span class="function">getHeight</span>() - <span class="number">1</span>);
-
-<span class="comment">// Step 3: Get fractional parts</span>
-<span class="keyword">float</span> fx = x - <span class="function">floor</span>(x);
-<span class="keyword">float</span> fy = y - <span class="function">floor</span>(y);
-
-<span class="comment">// Step 4: Get 4 pixel values</span>
-Pixel f00 = image.<span class="function">getPixel</span>(x0, y0);  <span class="comment">// Top-Left</span>
-Pixel f10 = image.<span class="function">getPixel</span>(x1, y0);  <span class="comment">// Top-Right</span>
-Pixel f01 = image.<span class="function">getPixel</span>(x0, y1);  <span class="comment">// Bottom-Left</span>
-Pixel f11 = image.<span class="function">getPixel</span>(x1, y1);  <span class="comment">// Bottom-Right</span></pre>
-                    </div>
-
-                    <div class="code-block" id="weights">
-                        <pre><span class="comment">// Step 5: Calculate weights</span>
-<span class="keyword">float</span> w00 = (<span class="number">1.0f</span> - fx) × (<span class="number">1.0f</span> - fy);  <span class="comment">// Top-Left weight</span>
-<span class="keyword">float</span> w10 = fx × (<span class="number">1.0f</span> - fy);         <span class="comment">// Top-Right weight</span>
-<span class="keyword">float</span> w01 = (<span class="number">1.0f</span> - fx) × fy;         <span class="comment">// Bottom-Left weight</span>
-<span class="keyword">float</span> w11 = fx × fy;                  <span class="comment">// Bottom-Right weight</span>
-
-<span class="comment">// Step 6: Weighted sum (bilinear interpolation)</span>
-<span class="keyword">float</span> result = f00×w00 + f10×w10 + f01×w01 + f11×w11;
-
-<span class="comment">// Contoh dengan nilai aktual:</span>
-<span class="comment">// Neighbors: f00 = 60, f10 = 80, f01 = 90, f11 = 110</span>
-<span class="comment">// Fractions: fx = 1.34 - 1 = 0.34, fy = 1.33 - 1 = 0.33</span>
-<span class="comment">// Weights: w00 = (1-0.34)×(1-0.33) = 0.4417</span>
-<span class="comment">//          w10 = 0.34×(1-0.33) = 0.2250</span>
-<span class="comment">//          w01 = (1-0.34)×0.33 = 0.2208</span>
-<span class="comment">//          w11 = 0.34×0.33 = 0.1125</span>
-<span class="comment">// Result: 60×0.4417 + 80×0.2250 + 90×0.2208 + 110×0.1125</span>
-<span class="comment">//       = 26.50 + 18.00 + 19.88 + 12.37 = 76.75</span></pre>
-                    </div>
-
-                    <div class="code-block" id="resize">
-                        <pre><span class="comment">// SERIAL VERSION</span>
-<span class="keyword">void</span> <span class="function">resizeSerial</span>(Image& dest, <span class="keyword">const</span> Image& src) {
-    <span class="keyword">float</span> scaleX = (<span class="keyword">float</span>)src.width / dest.width;
-    <span class="keyword">float</span> scaleY = (<span class="keyword">float</span>)src.height / dest.height;
-
-    <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y < dest.height; y++) {
-        <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x < dest.width; x++) {
-            <span class="keyword">float</span> srcX = x × scaleX;
-            <span class="keyword">float</span> srcY = y × scaleY;
-            dest.<span class="function">setPixel</span>(x, y, <span class="function">bilinearInterpolate</span>(src, srcX, srcY));
-        }
-    }
-}
-
-<span class="comment">// OPENMP VERSION (SLOWER!)</span>
-<span class="keyword">void</span> <span class="function">resizeOpenMP</span>(Image& dest, <span class="keyword">const</span> Image& src, <span class="keyword">int</span> threads) {
-    <span class="keyword">float</span> scaleX = (<span class="keyword">float</span>)src.width / dest.width;
-    <span class="keyword">float</span> scaleY = (<span class="keyword">float</span>)src.height / dest.height;
-
-    <span class="function">omp_set_num_threads</span>(threads);
-
-    <span class="comment">// Paralelisasi dengan OpenMP</span>
-    <span class="keyword">#pragma omp parallel for collapse(2)</span>
-    <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y < dest.height; y++) {
-        <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x < dest.width; x++) {
-            <span class="keyword">float</span> srcX = x × scaleX;
-            <span class="keyword">float</span> srcY = y × scaleY;
-            dest.<span class="function">setPixel</span>(x, y, <span class="function">bilinearInterpolate</span>(src, srcX, srcY));
-        }
-    }
-}</pre>
-                    </div>
-
-                    <div class="code-block" id="full">
-                        <pre><span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
-<span class="keyword">#include</span> <span class="string">&lt;math.h&gt;</span>
-<span class="keyword">#include</span> <span class="string">&lt;omp.h&gt;</span>
-
-<span class="keyword">typedef struct</span> {
-    <span class="keyword">float</span> r, g, b;
-} Pixel;
-
-<span class="keyword">typedef struct</span> {
-    <span class="keyword">int</span> width, height;
-    Pixel* data;
-} Image;
-
-Pixel <span class="function">bilinearInterpolate</span>(<span class="keyword">const</span> Image* img, <span class="keyword">float</span> x, <span class="keyword">float</span> y) {
-    <span class="comment">// Implementation as shown in other tabs</span>
-    <span class="comment">// ...</span>
-}
-
-Image* <span class="function">resizeSerial</span>(<span class="keyword">const</span> Image* src, <span class="keyword">int</span> w, <span class="keyword">int</span> h) {
-    <span class="comment">// Serial implementation</span>
-}
-
-Image* <span class="function">resizeOpenMP</span>(<span class="keyword">const</span> Image* src, <span class="keyword">int</span> w, <span class="keyword">int</span> h, <span class="keyword">int</span> threads) {
-    <span class="comment">// OpenMP parallel implementation</span>
-}</pre>
-                    </div>
-
-                    <div class="code-block" id="bilinear">
-                        <pre><span class="comment">// bilinear.c - Complete implementation</span>
-<span class="comment">// Lihat file source lengkap di repository</span>
-
-<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
-<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
-<span class="keyword">#include</span> <span class="string">&lt;math.h&gt;</span>
-<span class="keyword">#include</span> <span class="string">&lt;time.h&gt;</span>
-
-<span class="keyword">#ifdef</span> USE_OPENMP
-<span class="keyword">#include</span> <span class="string">&lt;omp.h&gt;</span>
-<span class="keyword">#endif</span>
-
-<span class="comment">/* Struktur data untuk pixel RGB */</span>
-<span class="keyword">typedef struct</span> {
-    <span class="keyword">float</span> r, g, b;
-} Pixel;
-
-<span class="comment">/* Struktur data untuk image */</span>
-<span class="keyword">typedef struct</span> {
-    <span class="keyword">int</span> width;
-    <span class="keyword">int</span> height;
-    Pixel *data;
-} Image;
-
-<span class="comment">/* Fungsi utama bilinear interpolation */</span>
-Pixel <span class="function">bilinearInterpolate</span>(<span class="keyword">const</span> Image *img, <span class="keyword">float</span> x, <span class="keyword">float</span> y) {
-    <span class="comment">// ... implementasi lengkap ...</span>
-}
-
-<span class="keyword">int</span> <span class="function">main</span>() {
-    <span class="function">printf</span>(<span class="string">"Bilinear Interpolation Benchmark\n"</span>);
-    <span class="keyword">return</span> <span class="number">0</span>;
-}</pre>
-                    </div>
+                    <span class="icon">📊</span>
+                    Perhitungan Real-time
                 </div>
 
                 <!-- Real-time Calculation Display -->
                 <div class="calc-steps" style="margin-top: 20px;">
-                    <div style="color: #fbbf24; font-size: 1.2em; font-weight: 600; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
-                        <span>📊</span>
-                        <span>Perhitungan Real-time</span>
-                    </div>
                     <div class="step-content" id="realtimeCalc">
                         <span class="comment">// Neighbors:</span> f00 = <span class="highlight" id="f00Val">60</span>, f10 = <span class="highlight" id="f10Val">80</span>, f01 = <span class="highlight" id="f01Val">90</span>, f11 = <span class="highlight" id="f11Val">110</span><br>
                         <span class="comment">// Fractions:</span> fx = <span class="highlight" id="fxVal">0.34</span>, fy = <span class="highlight" id="fyVal">0.33</span><br>
@@ -768,7 +1204,124 @@ Pixel <span class="function">bilinearInterpolate</span>(<span class="keyword">co
                 </div>
             </div>
         </div>
+        </div><!-- END section-visualisasi -->
 
+        <!-- SECTION: SOURCE CODE -->
+        <div class="content-section materi-panel" id="section-sourcecode">
+            <div class="materi-content" style="max-width: 1100px;">
+                <h2>💻 Source Code (Bahasa C)</h2>
+                <div class="code-tabs" style="margin-bottom: 20px;">
+                    <div class="tab active" onclick="showCodeTab('code-interpolate')">interpolate()</div>
+                    <div class="tab" onclick="showCodeTab('code-weights')">weights</div>
+                    <div class="tab" onclick="showCodeTab('code-resize')">resize()</div>
+                    <div class="tab" onclick="showCodeTab('code-bilinear')">bilinear.c</div>
+                </div>
+                <div id="code-interpolate" class="code-block-section active">
+                    <pre><span class="comment">// Step 1: Clamp coordinates</span>
+<span class="keyword">float</span> x = <span class="function">max</span>(<span class="number">0.0f</span>, <span class="function">min</span>(x, (<span class="keyword">float</span>)image.width - <span class="number">1.001f</span>));
+<span class="keyword">float</span> y = <span class="function">max</span>(<span class="number">0.0f</span>, <span class="function">min</span>(y, (<span class="keyword">float</span>)image.height - <span class="number">1.001f</span>));
+
+<span class="comment">// Step 2: Get integer coordinates (4 neighbors)</span>
+<span class="keyword">int</span> x0 = (<span class="keyword">int</span>)<span class="function">floor</span>(x);
+<span class="keyword">int</span> y0 = (<span class="keyword">int</span>)<span class="function">floor</span>(y);
+<span class="keyword">int</span> x1 = <span class="function">min</span>(x0 + <span class="number">1</span>, image.width - <span class="number">1</span>);
+<span class="keyword">int</span> y1 = <span class="function">min</span>(y0 + <span class="number">1</span>, image.height - <span class="number">1</span>);
+
+<span class="comment">// Step 3: Get fractional parts</span>
+<span class="keyword">float</span> fx = x - <span class="function">floor</span>(x);
+<span class="keyword">float</span> fy = y - <span class="function">floor</span>(y);
+
+<span class="comment">// Step 4: Get 4 pixel values</span>
+Pixel f00 = image.data[y0 * width + x0];  <span class="comment">// Top-Left</span>
+Pixel f10 = image.data[y0 * width + x1];  <span class="comment">// Top-Right</span>
+Pixel f01 = image.data[y1 * width + x0];  <span class="comment">// Bottom-Left</span>
+Pixel f11 = image.data[y1 * width + x1];  <span class="comment">// Bottom-Right</span></pre>
+                </div>
+                <div id="code-weights" class="code-block-section">
+                    <pre><span class="comment">// Step 5: Calculate weights</span>
+<span class="keyword">float</span> w00 = (<span class="number">1.0f</span> - fx) * (<span class="number">1.0f</span> - fy);  <span class="comment">// Top-Left weight</span>
+<span class="keyword">float</span> w10 = fx * (<span class="number">1.0f</span> - fy);         <span class="comment">// Top-Right weight</span>
+<span class="keyword">float</span> w01 = (<span class="number">1.0f</span> - fx) * fy;         <span class="comment">// Bottom-Left weight</span>
+<span class="keyword">float</span> w11 = fx * fy;                  <span class="comment">// Bottom-Right weight</span>
+
+<span class="comment">// Step 6: Weighted sum (bilinear interpolation)</span>
+<span class="keyword">float</span> result = f00*w00 + f10*w10 + f01*w01 + f11*w11;
+
+<span class="comment">// Contoh dengan nilai aktual:</span>
+<span class="comment">// Neighbors: f00 = 60, f10 = 80, f01 = 90, f11 = 110</span>
+<span class="comment">// Fractions: fx = 1.34 - 1 = 0.34, fy = 1.33 - 1 = 0.33</span>
+<span class="comment">// Weights: w00 = (1-0.34)×(1-0.33) = 0.4417</span>
+<span class="comment">//          w10 = 0.34×(1-0.33) = 0.2250</span>
+<span class="comment">//          w01 = (1-0.34)×0.33 = 0.2208</span>
+<span class="comment">//          w11 = 0.34×0.33 = 0.1125</span>
+<span class="comment">// Result: 60×0.4417 + 80×0.2250 + 90×0.2208 + 110×0.1125 = 76.75</span></pre>
+                </div>
+                <div id="code-resize" class="code-block-section">
+                    <pre><span class="comment">// SERIAL VERSION</span>
+<span class="keyword">void</span> <span class="function">resizeSerial</span>(Image* dest, <span class="keyword">const</span> Image* src) {
+    <span class="keyword">float</span> scaleX = (<span class="keyword">float</span>)src->width / dest->width;
+    <span class="keyword">float</span> scaleY = (<span class="keyword">float</span>)src->height / dest->height;
+
+    <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y < dest->height; y++) {
+        <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x < dest->width; x++) {
+            <span class="keyword">float</span> srcX = x * scaleX;
+            <span class="keyword">float</span> srcY = y * scaleY;
+            dest->data[y * dest->width + x] = <span class="function">bilinearInterpolate</span>(src, srcX, srcY);
+        }
+    }
+}
+
+<span class="comment">// OPENMP VERSION</span>
+<span class="keyword">void</span> <span class="function">resizeOpenMP</span>(Image* dest, <span class="keyword">const</span> Image* src, <span class="keyword">int</span> threads) {
+    <span class="keyword">float</span> scaleX = (<span class="keyword">float</span>)src->width / dest->width;
+    <span class="keyword">float</span> scaleY = (<span class="keyword">float</span>)src->height / dest->height;
+
+    <span class="function">omp_set_num_threads</span>(threads);
+
+    <span class="comment">// Paralelisasi dengan OpenMP</span>
+    <span class="keyword">#pragma omp parallel for collapse(2)</span>
+    <span class="keyword">for</span> (<span class="keyword">int</span> y = <span class="number">0</span>; y < dest->height; y++) {
+        <span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x < dest->width; x++) {
+            <span class="keyword">float</span> srcX = x * scaleX;
+            <span class="keyword">float</span> srcY = y * scaleY;
+            dest->data[y * dest->width + x] = <span class="function">bilinearInterpolate</span>(src, srcX, srcY);
+        }
+    }
+}</pre>
+                </div>
+                <div id="code-bilinear" class="code-block-section">
+                    <pre><span class="comment">/* KENAPA C, BUKAN C++?
+   Project ini menggunakan BAHASA C murni, bukan C++!
+   
+   Alasan memilih C:
+   ✓ Lebih SEDERHANA - tidak ada class, template, inheritance
+   ✓ Lebih PORTABLE - bisa dicompile di embedded systems
+   ✓ Lebih PREDICTABLE - memory management eksplisit
+   ✓ OVERHEAD MINIMAL - tidak ada virtual function table
+   ✓ Lebih mudah di-OPTIMIZE oleh compiler
+*/</span>
+
+<span class="keyword">#include</span> <span class="string">&lt;stdio.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;stdlib.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;math.h&gt;</span>
+
+<span class="keyword">#ifdef</span> USE_OPENMP
+<span class="keyword">#include</span> <span class="string">&lt;omp.h&gt;</span>
+<span class="keyword">#endif</span>
+
+<span class="keyword">typedef struct</span> { <span class="keyword">float</span> r, g, b; } Pixel;
+<span class="keyword">typedef struct</span> { <span class="keyword">int</span> width, height; Pixel *data; } Image;
+
+<span class="comment">/* COMPILE COMMANDS:
+   Serial:   gcc -o bilinear bilinear.c -std=c99 -O3 -lm
+   OpenMP:   gcc -o bilinear bilinear.c -std=c99 -O3 -lm -fopenmp -DUSE_OPENMP
+*/</span></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: BENCHMARK -->
+        <div class="content-section" id="section-benchmark">
         <!-- PERFORMANCE ANALYSIS SECTION -->
         <div class="analysis-section">
             <div class="analysis-title">
@@ -901,9 +1454,46 @@ Pixel <span class="function">bilinearInterpolate</span>(<span class="keyword">co
                 </div>
             </div>
         </div>
+        </div><!-- END section-benchmark -->
     </div>
 
     <script>
+        // Main Navigation - Section switching
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active from all nav tabs
+            document.querySelectorAll('.main-nav .nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById('section-' + sectionName).classList.add('active');
+            
+            // Add active to clicked tab
+            document.querySelectorAll('.main-nav .nav-tab').forEach(tab => {
+                if (tab.getAttribute('onclick').includes(sectionName)) {
+                    tab.classList.add('active');
+                }
+            });
+        }
+        
+        // Source Code Tab switching
+        function showCodeTab(tabId) {
+            document.querySelectorAll('.code-block-section').forEach(block => {
+                block.classList.remove('active');
+            });
+            document.querySelectorAll('#section-sourcecode .tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
         // Sample 4x4 image data
         const imageData = [
             [10, 30, 50, 70],
@@ -1124,7 +1714,12 @@ Pixel <span class="function">bilinearInterpolate</span>(<span class="keyword">co
 
             // Show selected tab
             document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
+            // Find the clicked tab and add active class
+            document.querySelectorAll('.tab').forEach(tab => {
+                if (tab.getAttribute('onclick').includes(tabName)) {
+                    tab.classList.add('active');
+                }
+            });
         }
 
         // Animation
